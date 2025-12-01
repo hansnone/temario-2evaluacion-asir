@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-7f6c4e25.js";
+            window.path_to_searchindex_js = "searchindex-e4f031e3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-50c36952.js"></script>
+        <script src="toc-73f06c6a.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -181,6 +181,33 @@ En esta Web, con suerte, encontraras todo el temario de ASIR 2º. Si quieres añ
 Besi de fresi.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="administración-de-sistemas-gestores-de-bases-de-datos"><a class="header" href="#administración-de-sistemas-gestores-de-bases-de-datos">Administración de sistemas gestores de bases de datos</a></h1>
+<p>Los trabajos y la asistencia cuentan el 50%.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="teoria"><a class="header" href="#teoria">Teoria</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="inicializacion-de-base-de-datos"><a class="header" href="#inicializacion-de-base-de-datos">Inicializacion de base de datos</a></h1>
+<h2 id="comandos-de-la-teoria"><a class="header" href="#comandos-de-la-teoria">Comandos de la teoria</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Comando</th><th>Descripción</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>startup nomount</strong></td><td>Inicia la instancia sin montar la base de datos (solo memoria y procesos).</td></tr>
+<tr><td><strong>SELECT status FROM v$instance</strong></td><td>Muestra el estado actual de la instancia (STARTED, MOUNTED, OPEN).</td></tr>
+<tr><td><strong>alter database mount</strong></td><td>Monta la base de datos, accediendo a los ficheros de control, sin abrirla.</td></tr>
+<tr><td><strong>alter database open</strong></td><td>Abre la base de datos para operaciones de lectura/escritura.</td></tr>
+<tr><td><strong>SELECT name FROM v$controlfile</strong></td><td>Muestra las rutas de los ficheros de control actuales.</td></tr>
+<tr><td><strong>ALTER SYSTEM SET control_files = ‘C:\ORACLEXE\APP\ORACLE\ORADATA\XE\CONTROL.DBF’, ‘C:\ORACLEXE\APP\ORACLE\ORADATA\XE\CONTROLC1.DBF’ SCOPE=SPFILE</strong></td><td>Modifica el parámetro <code>control_files</code> en el SPFILE para definir las rutas de los ficheros.</td></tr>
+<tr><td><strong>SELECT name, value, isdefault FROM v$parameter ORDER BY name</strong></td><td>Lista parámetros dinámicos de la instancia con su valor y si son por defecto.</td></tr>
+<tr><td><strong>SELECT name, value, isspecified FROM v$spparameter WHERE value IS NOT NULL ORDER BY name</strong></td><td>Muestra parámetros definidos en el SPFILE que tienen valor asignado.</td></tr>
+<tr><td><strong>CREATE PFILE=‘C:\clase\02_AdmonBD\mis_parametros.ora’ FROM SPFILE</strong></td><td>Genera un fichero PFILE a partir del SPFILE actual.</td></tr>
+<tr><td><strong>SELECT name, value, isbasic, isdefault FROM v$parameter WHERE name LIKE ‘%memory%’</strong></td><td>Consulta parámetros relacionados con memoria (SGA, PGA, etc.).</td></tr>
+</tbody>
+</table>
+</div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="practicas"><a class="header" href="#practicas">Practicas</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="administración-de-sistemas-operativos"><a class="header" href="#administración-de-sistemas-operativos">Administración de sistemas operativos</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>

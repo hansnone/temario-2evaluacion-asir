@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Administración de sistemas operativos - Temario completo unificado de ASIR</title>
+        <title>Inicializacion de base de datos - Temario completo unificado de ASIR</title>
 
 
         <!-- Custom HTML head -->
@@ -174,17 +174,37 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="administración-de-sistemas-operativos"><a class="header" href="#administración-de-sistemas-operativos">Administración de sistemas operativos</a></h1>
+                        <h1 id="inicializacion-de-base-de-datos"><a class="header" href="#inicializacion-de-base-de-datos">Inicializacion de base de datos</a></h1>
+<h2 id="comandos-de-la-teoria"><a class="header" href="#comandos-de-la-teoria">Comandos de la teoria</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Comando</th><th>Descripción</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>startup nomount</strong></td><td>Inicia la instancia sin montar la base de datos (solo memoria y procesos).</td></tr>
+<tr><td><strong>SELECT status FROM v$instance</strong></td><td>Muestra el estado actual de la instancia (STARTED, MOUNTED, OPEN).</td></tr>
+<tr><td><strong>alter database mount</strong></td><td>Monta la base de datos, accediendo a los ficheros de control, sin abrirla.</td></tr>
+<tr><td><strong>alter database open</strong></td><td>Abre la base de datos para operaciones de lectura/escritura.</td></tr>
+<tr><td><strong>SELECT name FROM v$controlfile</strong></td><td>Muestra las rutas de los ficheros de control actuales.</td></tr>
+<tr><td><strong>ALTER SYSTEM SET control_files = ‘C:\ORACLEXE\APP\ORACLE\ORADATA\XE\CONTROL.DBF’, ‘C:\ORACLEXE\APP\ORACLE\ORADATA\XE\CONTROLC1.DBF’ SCOPE=SPFILE</strong></td><td>Modifica el parámetro <code>control_files</code> en el SPFILE para definir las rutas de los ficheros.</td></tr>
+<tr><td><strong>SELECT name, value, isdefault FROM v$parameter ORDER BY name</strong></td><td>Lista parámetros dinámicos de la instancia con su valor y si son por defecto.</td></tr>
+<tr><td><strong>SELECT name, value, isspecified FROM v$spparameter WHERE value IS NOT NULL ORDER BY name</strong></td><td>Muestra parámetros definidos en el SPFILE que tienen valor asignado.</td></tr>
+<tr><td><strong>CREATE PFILE=‘C:\clase\02_AdmonBD\mis_parametros.ora’ FROM SPFILE</strong></td><td>Genera un fichero PFILE a partir del SPFILE actual.</td></tr>
+<tr><td><strong>SELECT name, value, isbasic, isdefault FROM v$parameter WHERE name LIKE ‘%memory%’</strong></td><td>Consulta parámetros relacionados con memoria (SGA, PGA, etc.).</td></tr>
+</tbody>
+</table>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="sgbd_practicas.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="sgbd_teoria.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="ciber.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="sgbd_practicas.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -194,11 +214,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="sgbd_practicas.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="sgbd_teoria.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="ciber.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="sgbd_practicas.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
