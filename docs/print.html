@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-f84e7498.js";
+            window.path_to_searchindex_js = "searchindex-7c19eb0c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-5de98111.js"></script>
@@ -397,6 +397,42 @@ Besi de fresi.</p>
 <h1 id="teoria-1"><a class="header" href="#teoria-1">Teoria</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="historia-www"><a class="header" href="#historia-www">Historia WWW</a></h1>
+<blockquote>
+<p>Dos trabajos servicio web y ftp. para el 15 y el 19 de Diciembre.</p>
+</blockquote>
+<h1 id="historia-www-1"><a class="header" href="#historia-www-1">Historia WWW</a></h1>
+<p>Ambos (la primera web, y la WWW) son obra de un mismo autor: el científico británico Tim Berners-Lee, en aquel entonces investigador del prestigioso Laboratorio Europeo de Física de Partículas (CERN) de Ginebra.
+La primera página web de la Historia sigue funcionando y puedes navegar por ella Reproducción de la primera página The World Wide Web project
+The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.
+Accede a la réplica de la primera página web que se configuró The World Wide Web project.
+Accede mediante el comando curl para poder descargar la primera página en un fichero index.html y visualizarlo localmente.
+Activa en el Windows Server el rol de IIS (Servicios web) y monta esta página.
+Sube una captura de un navegador del Windows Server accediendo a http://localhost donde se puede ver el contenido de esta página.</p>
+<blockquote>
+<p>Enlaces de <strong>Interes</strong>:</p>
+</blockquote>
+<ul>
+<li>https://www.xataka.com/privacidad/tim-berners-lee-creo-web-ahora-quiere-salvarla-vez</li>
+<li>https://www.genbeta.com/web/primera-pagina-web-historia-sigue-funcionando-puedes-navegar-ella-1</li>
+<li>https://info.cern.ch/hypertext/WWW/TheProject.html</li>
+<li>https://info.cern.ch/hypertext/WWW/WhatIs.html</li>
+<li>https://info.cern.ch/hypertext/WWW/TheProject.html</li>
+</ul>
+<h2 id="comando-curl"><a class="header" href="#comando-curl">Comando CURL.</a></h2>
+<p>curl en una herramienta para la transferencia de datos desde un servidor o una web usando un URLs. Soporta los siguientes protocolos:  DICT,  FILE,  FTP,  FTPS, GOPHER, GOPHERS, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, MQTT, POP3, POP3S, RTMP, RTMPS, RTSP, SCP, SFTP, SMB,  SMBS, SMTP, SMTPS, TELNET, TFTP, WS and WSS.</p>
+<pre><code class="language-bash">curl https://download.fedoraproject.org/pub/fedora/linux/releases/43/Server/x86_64/iso/Fedora-Server-dvd-x86_64-43-1.6.iso
+</code></pre>
+<h3 id="parametros-de-inteneres"><a class="header" href="#parametros-de-inteneres">Parametros de inteneres</a></h3>
+<p>-v: se utiliza para obtener una salida más detallada del proceso de comunicación.
+El parámetro <strong><code>-v</code></strong> (o <strong><code>--verbose</code></strong>) en el comando <code>curl</code> se utiliza para obtener una salida <strong>más detallada</strong> del proceso de comunicación.
+La salida <strong>verbosa</strong> incluye:</p>
+<ul>
+<li><strong>Detalles de la conexión:</strong> Información sobre la resolución DNS, el intento de conexión y el puerto.</li>
+<li><strong>Encabezados de solicitud (Request Headers):</strong> Los encabezados HTTP que <code>curl</code> envía al servidor (marcados con <code>&gt;</code>).</li>
+<li><strong>Información de negociación SSL/TLS</strong> (si aplica).</li>
+<li><strong>Encabezados de respuesta (Response Headers):</strong> Los encabezados HTTP que el servidor devuelve (marcados con <code>&lt;</code>).</li>
+<li><strong>Notas informativas</strong> del proceso de transferencia (marcadas con <code>*</code>).</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="practicas-1"><a class="header" href="#practicas-1">Practicas</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -423,6 +459,102 @@ Besi de fresi.</p>
 <p>En total cuatro capturas.</p>
 <p>Aquí un blog con los pasos que ha dado el autor para unir todos los pasos:</p>
 <p>Como instalar PHP sobre IIS 10 en Windows Server 2019 Datacenter – Mtro. Guillermo Humberto Vera Amaro (https://www.uv.mx/personal/gvera/2022/02/26/como-instalar-php-sobre-iis-10-en-windows-server-2019-datacenter/)</p>
+<h2 id="solucion"><a class="header" href="#solucion">Solucion</a></h2>
+<h3 id="1-cambio-de-hostname-gui"><a class="header" href="#1-cambio-de-hostname-gui">1. Cambio de Hostname (GUI)</a></h3>
+<ol>
+<li>Abrir <strong>Server Manager</strong> &gt; <strong>Local Server</strong>.</li>
+<li>Clic en el nombre actual del equipo (junto a “Computer name”).</li>
+<li>En la ventana <strong>System Properties</strong>, pestaña <strong>Computer Name</strong>, clic en <strong>Change…</strong></li>
+<li>En “Computer name”, escribir: <code>WIN-tunombreinicialapellido</code>.</li>
+<li>Clic <strong>OK</strong> &gt; <strong>OK</strong> &gt; <strong>Close</strong>.</li>
+<li>Clic en <strong>Restart Now</strong>.</li>
+</ol>
+<h3 id="2-configuración-dns"><a class="header" href="#2-configuración-dns">2. Configuración DNS</a></h3>
+<ol>
+<li>Abrir <strong>Server Manager</strong> &gt; <strong>Tools</strong> &gt; <strong>DNS</strong>.</li>
+<li>Expandir el servidor. Clic derecho en <strong>Forward Lookup Zones</strong> &gt; <strong>New Zone…</strong></li>
+<li>Wizard: <strong>Next</strong> &gt; <strong>Primary zone</strong> &gt; <strong>Next</strong>.</li>
+<li>Zone name: <code>tunombre.tuapellido</code> &gt; <strong>Next</strong> &gt; <strong>Next</strong> &gt; <strong>Finish</strong>.</li>
+<li>Entrar en la zona creada (panel izquierdo).</li>
+<li>Clic derecho en espacio en blanco (panel derecho) &gt; <strong>New Host (A or AAAA)…</strong></li>
+<li>Name: <code>www</code>.</li>
+<li>IP address: La IP estática de tu servidor.</li>
+<li>Clic <strong>Add Host</strong> &gt; <strong>Done</strong>.</li>
+</ol>
+<h3 id="3-instalación-de-roles-iis-y-cgi"><a class="header" href="#3-instalación-de-roles-iis-y-cgi">3. Instalación de Roles IIS y CGI</a></h3>
+<ol>
+<li><strong>Server Manager</strong> &gt; <strong>Manage</strong> &gt; <strong>Add Roles and Features</strong>.</li>
+<li><strong>Next</strong> hasta “Server Roles”.</li>
+<li>Marcar <strong>Web Server (IIS)</strong>. Aceptar características requeridas.</li>
+<li><strong>Next</strong>. En “Role Services” (dentro de Web Server &gt; Application Development), marcar <strong>CGI</strong>. (Necesario para PHP FastCGI).</li>
+<li><strong>Next</strong> &gt; <strong>Install</strong>.</li>
+</ol>
+<h3 id="4-configuración-del-sitio-web-y-bindings"><a class="header" href="#4-configuración-del-sitio-web-y-bindings">4. Configuración del Sitio Web y Bindings</a></h3>
+<ol>
+<li><strong>Explorador de Archivos</strong>: Ir a <code>C:\inetpub\wwwroot</code>.</li>
+<li>Crear carpeta: <code>www.tunombre.tuapellido</code>.</li>
+<li>Dentro, crear archivo de texto y renombrar a <code>index.html</code>. Pegar contenido HTML.</li>
+<li><strong>Server Manager</strong> &gt; <strong>Tools</strong> &gt; <strong>Internet Information Services (IIS) Manager</strong>.</li>
+<li>Clic derecho en <strong>Sites</strong> &gt; <strong>Add Website…</strong>
+<ul>
+<li><strong>Site name</strong>: <code>www.tunombre.tuapellido</code>.</li>
+<li><strong>Physical path</strong>: Seleccionar la carpeta creada en el paso 2.</li>
+<li><strong>Binding</strong>:
+<ul>
+<li>Type: <code>http</code>.</li>
+<li>IP address: <code>All Unassigned</code> o la IP del servidor.</li>
+<li>Port: <code>80</code>.</li>
+<li><strong>Host name</strong>: <code>www.tunombre.tuapellido</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Clic <strong>OK</strong>.</li>
+</ol>
+<h3 id="5-instalación-y-configuración-php-gui"><a class="header" href="#5-instalación-y-configuración-php-gui">5. Instalación y Configuración PHP (GUI)</a></h3>
+<p><strong>Preparación de archivos:</strong></p>
+<ol>
+<li>Descargar e instalar <strong>Visual C++ Redistributable (x64)</strong> (ejecutable).</li>
+<li>Descargar <strong>PHP (NTS x64)</strong> .zip.</li>
+<li>Extraer el .zip en <code>C:\php</code>.</li>
+<li>En <code>C:\php</code>, buscar <code>php.ini-production</code>. Clic derecho &gt; <strong>Rename</strong> a <code>php.ini</code>.</li>
+<li>Abrir <code>php.ini</code> con Notepad:
+<ul>
+<li>Buscar y quitar el punto y coma (;) inicial de:
+<ul>
+<li><code>extension_dir = "ext"</code></li>
+<li><code>cgi.force_redirect = 0</code></li>
+<li><code>fastcgi.impersonate = 1</code></li>
+<li><code>date.timezone = "Europe/Madrid"</code></li>
+</ul>
+</li>
+<li>Guardar y cerrar.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Configuración en IIS Manager:</strong></p>
+<ol>
+<li>Clic en el nombre del servidor (panel izquierdo).</li>
+<li>Doble clic en icono <strong>Handler Mappings</strong>.</li>
+<li>En panel derecho (Actions), clic <strong>Add Module Mapping…</strong>
+<ul>
+<li><strong>Request path</strong>: <code>*.php</code></li>
+<li><strong>Module</strong>: Seleccionar <code>FastCgiModule</code> (si no aparece, revisa paso 3 de esta guía).</li>
+<li><strong>Executable</strong>: Clic <code>...</code> y buscar <code>C:\php\php-cgi.exe</code>.</li>
+<li><strong>Name</strong>: <code>PHP_FastCGI</code>.</li>
+</ul>
+</li>
+<li>Clic <strong>OK</strong>. Confirmar con <strong>Yes</strong> en el diálogo que aparece.</li>
+<li>Volver al servidor (panel izquierdo). Doble clic en <strong>Default Document</strong>.</li>
+<li>Panel derecho &gt; <strong>Add…</strong> &gt; Escribir <code>index.php</code> &gt; <strong>OK</strong>.</li>
+</ol>
+<h3 id="6-verificación-cliente-windows-11"><a class="header" href="#6-verificación-cliente-windows-11">6. Verificación Cliente (Windows 11)</a></h3>
+<ol>
+<li>En Windows 11: <strong>Configuración</strong> &gt; <strong>Red e Internet</strong> &gt; <strong>Ethernet</strong> (o adaptador Host-Only).</li>
+<li>Editar asignación de servidor DNS.</li>
+<li>Establecer la <strong>IP del Windows Server</strong> como DNS preferido.</li>
+<li>Abrir navegador en cliente y visitar <code>http://www.tunombre.tuapellido/phpinfo.php</code>.</li>
+</ol>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="sostenibilidad-aplicada-al-sistema-productivo"><a class="header" href="#sostenibilidad-aplicada-al-sistema-productivo">Sostenibilidad aplicada al sistema productivo</a></h1>
 
@@ -449,6 +581,22 @@ Besi de fresi.</p>
         <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
         <script>
