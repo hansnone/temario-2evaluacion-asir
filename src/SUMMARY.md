@@ -12,6 +12,10 @@
 - [ Inglés profesional (GS)](./ingles.md)
 - [Seguridad y alta disponibilidad](./sad.md)
 - [Servicios de red e Internet](./sri.md)
+    - [Teoria](./sri_teoria.md)
+        - [Historia WWW](./sri_historia_www.md)
+    - [Practicas](./sri_practicas.md)
+        [Practicas](./sri_practicas_Servidor_web_páginas_estáticas_y_dinámicas.md)
 - [Sostenibilidad aplicada al sistema productivo](./sostenibilidad.md)
 
 
