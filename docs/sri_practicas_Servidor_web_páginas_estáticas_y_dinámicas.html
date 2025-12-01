@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Servicios de red e Internet - Temario completo unificado de ASIR</title>
+        <title>Practicas - Temario completo unificado de ASIR</title>
 
 
         <!-- Custom HTML head -->
@@ -174,17 +174,39 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="servicios-de-red-e-internet"><a class="header" href="#servicios-de-red-e-internet">Servicios de red e Internet</a></h1>
+                        <h1 id="practicas"><a class="header" href="#practicas">Practicas</a></h1>
+<p>Utiliza el equipo Windows Server de la práctica anterior que ya dispone de rol de DHCP y DNS. Tendrás que cambiar el hostname por <strong>WIN-tunombreinicialapellido</strong>, esto requerirá que adaptes los registros de DNS para que recojan los cambios.</p>
+<p>Instala el rol de <strong>IIS</strong> en el Windows Server. Presenta una captura con la página <strong>www.tunombre.tuapellido</strong> que será una réplica de la primera página de Internet (mira los debates para saber más sobre esto). <em>(4 puntos contenido mínimo)</em></p>
+<p>Configura los enlaces del sitio (<strong>site bindings</strong>) para que sea accesible sólo por <strong>www.tunombre.tuapellido</strong>. Accede desde el propio Windows Server con <code>http://localhost</code>. Presenta captura del site binding, explica qué ocurre. <em>(2 puntos)</em></p>
+<p>Realiza una instalación de <strong>PHP</strong> para disponer de una página dinámica (no estática como la anterior). Ten en cuenta los siguientes manuales:</p>
+<ul>
+<li>Paso 0. Últimas descargas de Visual C++ Redistributable compatibles | Microsoft Learn  (https://learn.microsoft.com/es-es/cpp/windows/latest-supported-vc-redist?view=msvc-170#latest-supported-redistributable-version)</li>
+<li>PHP For Windows: Binaries and sources Releases (https://windows.php.net/download/)</li>
+</ul>
+<p><strong>IIS</strong><br>Si usas PHP como <strong>FastCGI</strong> con IIS debes usar las versiones <strong>Non-Thread Safe (NTS)</strong> de PHP.</p>
+<ul>
+<li>FastCGI <code>&lt;fastCgi&gt;</code> | Microsoft Learn (https://learn.microsoft.com/en-us/iis/configuration/system.webserver/fastcgi/)</li>
+<li>Step 1: Install IIS and PHP | Microsoft Learn (https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh994592(v=ws.11)#13-download-and-install-php-manually)</li>
+<li>PHP: Instalación con IIS para Windows - Manual (https://www.php.net/manual/es/install.windows.iis.php)</li>
+</ul>
+<p>Captura (donde se vea autoría - nombre del servidor con tu nombre y apellidos) semejante a esta con el acceso a la página <code>http://www.tunombre.tuapellido/phpinfo.php</code>. <em>(3 puntos)</em><br>Si no consigues llegar hasta aquí, presenta captura/vídeo con el último paso dado: directorio con la instalación, ejecución de script, etc. Captura del mismo acceso desde un equipo cliente (puedes utilizar el Windows 11 de la otra práctica). Requiere configuración de <strong>host-only</strong> en VirtualBox. Adapta el php para que muestre información del cliente <em>(1 punto)</em></p>
+<ul>
+<li>Información del cliente y servidor con PHP - Victor Robles | Victor (https://victorroblesweb.es/2013/11/18/informacion-del-cliente-y-servidor-con-php/)</li>
+</ul>
+<p><img src="images/img_1.png" alt="img_1"></p>
+<p>En total cuatro capturas.</p>
+<p>Aquí un blog con los pasos que ha dado el autor para unir todos los pasos:</p>
+<p>Como instalar PHP sobre IIS 10 en Windows Server 2019 Datacenter – Mtro. Guillermo Humberto Vera Amaro (https://www.uv.mx/personal/gvera/2022/02/26/como-instalar-php-sobre-iis-10-en-windows-server-2019-datacenter/)</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="sad.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="sri_practicas.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="sri_teoria.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="sostenibilidad.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -194,11 +216,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="sad.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="sri_practicas.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="sri_teoria.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="sostenibilidad.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
