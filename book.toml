@@ -2,3 +2,6 @@
 title = "Temario completo unificado de ASIR"
 authors = ["hansnone"]
 language = "es"
+
+[build]
+build-dir = "docs"
