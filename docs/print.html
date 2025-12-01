@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-e4f031e3.js";
+            window.path_to_searchindex_js = "searchindex-f60f4926.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-73f06c6a.js"></script>
@@ -206,6 +206,76 @@ Besi de fresi.</p>
 </tbody>
 </table>
 </div>
+<h3 id="1-marco-de-gestión-de-la-base-de-datos"><a class="header" href="#1-marco-de-gestión-de-la-base-de-datos">1. Marco de Gestión de la Base de Datos</a></h3>
+<p>El marco de gestión de una base de datos Oracle 10g/11g consta de tres componentes principales:</p>
+<ul>
+<li><strong>Instancia de la base de datos</strong>.</li>
+<li><strong>Listener</strong> (permite las conexiones).</li>
+<li><strong>Interfaz de gestión</strong>: Puede ser <strong>Database Control</strong> (versión autónoma de Oracle Enterprise Manager) o un <strong>Agente de gestión</strong> (al usar Grid Control).</li>
+</ul>
+<p>El primer componente en iniciarse debe ser la <strong>interfaz de gestión</strong>, que luego puede iniciar los demás componentes.</p>
+<h3 id="2-inicialización-arranque-de-la-base-de-datos"><a class="header" href="#2-inicialización-arranque-de-la-base-de-datos">2. Inicialización (Arranque) de la Base de Datos</a></h3>
+<p>“Inicializar” la base de datos generalmente significa arrancar la instancia y la base de datos para que acepten conexiones. El proceso de arranque implica cargar en memoria:</p>
+<ul>
+<li>Parámetros de inicialización (SPFILE o INIT.ORA).</li>
+<li>Estructuras internas (SGA, PGA).</li>
+<li>Procesos de fondo.</li>
+</ul>
+<p>Técnicamente, el comando <code>STARTUP</code> ejecuta automáticamente los siguientes tres pasos:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Comando</th><th style="text-align: left">Estado (Modo)</th><th style="text-align: left">Descripción</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><code>STARTUP NOMOUNT</code></td><td style="text-align: left"><strong>STARTED</strong> (NOMOUNT)</td><td style="text-align: left">Se crea la instancia: se leen parámetros y se inicializa la SGA y procesos de fondo. <strong>No</strong> se leen archivos de control ni se abre la base. Se usa para crear una BD nueva o recrear control files.</td></tr>
+<tr><td style="text-align: left"><code>STARTUP MOUNT</code></td><td style="text-align: left"><strong>MOUNTED</strong> (MOUNT)</td><td style="text-align: left">Se montan los archivos de control. La instancia conoce la ubicación de datafiles y redo logs, pero la base <strong>no</strong> está abierta para usuarios. Se usa para backups/recovery (RMAN) o cambiar a modo ARCHIVELOG.</td></tr>
+<tr><td style="text-align: left"><code>STARTUP OPEN</code> (o <code>STARTUP</code>)</td><td style="text-align: left"><strong>OPEN</strong> (OPEN)</td><td style="text-align: left"><strong>Estado normal de operación</strong>. Se abren los datafiles y redo logs, y la BD está lista para usuarios y transacciones.</td></tr>
+<tr><td style="text-align: left"><code>STARTUP UPGRADE</code></td><td style="text-align: left"><strong>OPEN MIGRATE</strong></td><td style="text-align: left">Estado especial: BD abierta, pero solo accesible para usuarios con privilegios especiales. Se usa para procesos de migración o actualización del diccionario.</td></tr>
+</tbody>
+</table>
+</div>
+<p>El estado de la instancia se puede verificar con <code>SELECT status FROM v$instance;</code>.</p>
+<h3 id="3-parada-apagado-de-la-base-de-datos"><a class="header" href="#3-parada-apagado-de-la-base-de-datos">3. Parada (Apagado) de la Base de Datos</a></h3>
+<p>Existen cuatro modos principales de apagar la base de datos desde $SQL*Plus$:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Comando</th><th style="text-align: left">Uso</th><th style="text-align: left">Descripción</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><code>SHUTDOWN IMMEDIATE</code></td><td style="text-align: left"><strong>Recomendado</strong>.</td><td style="text-align: left">Cierra sesiones activas de forma segura y apaga rápido.</td></tr>
+<tr><td style="text-align: left"><code>SHUTDOWN NORMAL</code></td><td style="text-align: left">Espera a que los usuarios se desconecten.</td><td style="text-align: left">Puede tardar mucho si hay usuarios conectados.</td></tr>
+<tr><td style="text-align: left"><code>SHUTDOWN TRANSACTIONAL</code></td><td style="text-align: left">Espera a que terminen las transacciones activas, luego desconecta usuarios.</td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>SHUTDOWN ABORT</code></td><td style="text-align: left"><strong>Solo en emergencias</strong>.</td><td style="text-align: left">Mata procesos inmediatamente. Requiere <em>RECOVER</em> o <em>checkpoint</em> al levantar la BD.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="4-ficheros-clave-de-la-base-de-datos"><a class="header" href="#4-ficheros-clave-de-la-base-de-datos">4. Ficheros Clave de la Base de Datos</a></h3>
+<h4 id="a-fichero-de-configuración-spfile"><a class="header" href="#a-fichero-de-configuración-spfile">A. Fichero de Configuración: SPFILE</a></h4>
+<ul>
+<li><strong>SPFILE</strong> (Server Parameter File) es un fichero binario recomendado que Oracle usa al arrancar la instancia.</li>
+<li>Se modifica con comandos SQL como <code>ALTER SYSTEM SET parámetro valor SCOPE = SPFILE;</code>.</li>
+<li>Los parámetros pueden ser <strong>dinámicos</strong> (se cambian con la BD abierta, <code>SCOPE=BOTH</code>) o <strong>estáticos</strong> (requieren reinicio, <code>SCOPE=SPFILE</code>).</li>
+<li>Se puede ver si la instancia usa SPFILE consultando <code>SHOW PARAMETER spfile;</code>.</li>
+<li>El contenido del SPFILE se puede ver en la vista <code>v$spparameter</code>.</li>
+</ul>
+<h4 id="b-ficheros-de-control-control-files"><a class="header" href="#b-ficheros-de-control-control-files">B. Ficheros de Control: Control Files</a></h4>
+<ul>
+<li>Archivos <strong>críticos</strong> que contienen el mapa y metadata esencial de la base de datos.</li>
+<li>Almacenan el nombre de la BD, el SCN, la ubicación y estado de datafiles y redo logs, y el modo ARCHIVELOG.</li>
+<li>Oracle recomienda al menos dos copias (<strong>multiplexación</strong>) para evitar pérdidas.</li>
+<li>Se leen en <code>STARTUP MOUNT</code> y <code>OPEN</code>.</li>
+<li>Su ubicación se consulta con <code>SHOW PARAMETER control_files;</code> o <code>SELECT name FROM v$controlfile;</code>.</li>
+</ul>
+<h4 id="c-ficheros-de-redo-log-redo-log-files"><a class="header" href="#c-ficheros-de-redo-log-redo-log-files">C. Ficheros de Redo Log: Redo Log Files</a></h4>
+<ul>
+<li>Registran todas las modificaciones (DML y DDL) hechas en la base de datos para permitir la <strong>recuperación</strong> tras un fallo.</li>
+<li>Están organizados en <strong>Redo Log Groups</strong>, donde cada grupo puede contener uno o más archivos idénticos (multiplexación).</li>
+<li>El proceso de rotar de un grupo a otro se llama <strong>log switch</strong>.</li>
+</ul>
+<hr>
+<p>¿Te gustaría que profundice en alguno de los estados de la base de datos o en los comandos de parada?</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="practicas"><a class="header" href="#practicas">Practicas</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
