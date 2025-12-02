@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-7c19eb0c.js";
+            window.path_to_searchindex_js = "searchindex-fe7a4425.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-5de98111.js"></script>
+        <script src="toc-39ed12ec.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -286,6 +286,184 @@ Besi de fresi.</p>
 <h1 id="digitalización-aplicada-a-los-sectores-productivos-gs"><a class="header" href="#digitalización-aplicada-a-los-sectores-productivos-gs">Digitalización aplicada a los sectores productivos (GS)</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="implantación-de-aplicaciones-web"><a class="header" href="#implantación-de-aplicaciones-web">Implantación de aplicaciones web</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="tarea-nº-7---despliegue-nginx"><a class="header" href="#tarea-nº-7---despliegue-nginx">Tarea Nº 7 - Despliegue Nginx</a></h1>
+<p><strong>1. Detener el servidor Apache2</strong></p>
+<pre><code class="language-bash">sudo systemctl stop apache2
+</code></pre>
+<p><strong>2. Deshabilitar el inicio automático de Apache2</strong></p>
+<pre><code class="language-bash">sudo systemctl disable apache2
+</code></pre>
+<p><strong>3. Instalar el paquete Nginx</strong></p>
+<pre><code class="language-bash">sudo apt update
+sudo apt install nginx -y
+</code></pre>
+<p><strong>4 y 8. Configuración de Virtual Hosts (Puerto 80 y 81) y creación de contenido</strong></p>
+<p>Creación de directorios y ficheros <code>index.html</code> para diferenciar los sitios:</p>
+<pre><code class="language-bash"># Sitio Puerto 80
+sudo mkdir -p /var/www/sitio80
+echo "&lt;h1&gt;Web en Puerto 80 - Nginx&lt;/h1&gt;" | sudo tee /var/www/sitio80/index.html
+
+# Sitio Puerto 81
+sudo mkdir -p /var/www/sitio81
+echo "&lt;h1&gt;Web en Puerto 81 - Nginx&lt;/h1&gt;" | sudo tee /var/www/sitio81/index.html
+</code></pre>
+<p>Creación del fichero de configuración <code>/etc/nginx/sites-available/multi-port</code>:</p>
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        root /var/www/sitio80;
+        index index.html;
+    }
+}
+
+server {
+    listen 81;
+    server_name localhost;
+
+    location / {
+        root /var/www/sitio81;
+        index index.html;
+    }
+}
+</code></pre>
+<p>Habilitar la configuración y eliminar el enlace por defecto para evitar conflictos:</p>
+<pre><code class="language-bash">sudo ln -s /etc/nginx/sites-available/multi-port /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/default
+</code></pre>
+<p><strong>5. Comandos de gestión del servicio Nginx</strong></p>
+<ul>
+<li><strong>Arranque:</strong> <code>sudo systemctl start nginx</code></li>
+<li><strong>Parada:</strong> <code>sudo systemctl stop nginx</code></li>
+<li><strong>Estado:</strong> <code>sudo systemctl status nginx</code></li>
+<li><strong>Recarga (sin corte de servicio):</strong> <code>sudo systemctl reload nginx</code></li>
+</ul>
+<p><strong>6. Rutas de ficheros</strong></p>
+<ul>
+<li><strong>Configuración principal:</strong> <code>/etc/nginx/nginx.conf</code></li>
+<li><strong>Configuración de sitios (vhosts):</strong> <code>/etc/nginx/sites-available/</code> y <code>/etc/nginx/sites-enabled/</code></li>
+<li><strong>Directorio Web (root):</strong> <code>/var/www/</code></li>
+<li><strong>Logs de acceso:</strong> <code>/var/log/nginx/access.log</code></li>
+<li><strong>Logs de error:</strong> <code>/var/log/nginx/error.log</code></li>
+</ul>
+<p><strong>7. Verificación de sintaxis</strong></p>
+<pre><code class="language-bash">sudo nginx -t
+</code></pre>
+<p><em>Si la salida es “syntax is ok” y “test is successful”, proceder con el reinicio o recarga.</em></p>
+<hr>
+<p><strong>Solución al problema de visualización de la página de Apache</strong></p>
+<p>Si al entrar al puerto 80 sigue apareciendo la página de “Apache2 Default Page”, se debe a una de las siguientes causas:</p>
+<ol>
+<li><strong>Caché del navegador:</strong> El navegador ha guardado la versión anterior.
+<ul>
+<li><em>Solución:</em> Probar acceso con <code>curl localhost</code> desde la terminal o usar modo incógnito (Ctrl+Shift+N).</li>
+</ul>
+</li>
+<li><strong>Raíz por defecto compartida:</strong> Si no se elimina el sitio <code>default</code> de Nginx y este apunta a <code>/var/www/html</code>, mostrará el <code>index.html</code> que dejó Apache instalado en esa ruta.
+<ul>
+<li><em>Solución:</em> Asegurar la ejecución del comando <code>sudo rm /etc/nginx/sites-enabled/default</code> indicado en el punto 4 y recargar Nginx (<code>sudo systemctl reload nginx</code>).</li>
+</ul>
+</li>
+<li><strong>Proceso Zombie:</strong> Apache no se detuvo correctamente y sigue ocupando el puerto 80.
+<ul>
+<li><em>Diagnóstico:</em> <code>sudo lsof -i :80</code> o <code>sudo netstat -tulpn | grep :80</code></li>
+<li><em>Solución:</em> Si aparece <code>apache2</code> en el resultado, ejecutar <code>sudo killall apache2</code>.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Verificación final (Simulación de capturas)</strong></p>
+<p>Ejecutar en terminal para validar funcionamiento:</p>
+<pre><code class="language-bash">curl http://localhost:80
+# Salida esperada: &lt;h1&gt;Web en Puerto 80 - Nginx&lt;/h1&gt;
+
+curl http://localhost:81
+# Salida esperada: &lt;h1&gt;Web en Puerto 81 - Nginx&lt;/h1&gt;
+</code></pre>
+<h2 id="script-automatico"><a class="header" href="#script-automatico">Script automatico</a></h2>
+<p>Guardar el siguiente contenido en un fichero llamado <code>setup_nginx.sh</code>, dar permisos de ejecución y lanzar con privilegios de root.</p>
+<pre><code class="language-bash">#!/bin/bash
+
+# Comprobación de privilegios
+if [ "$EUID" -ne 0 ]; then
+  echo "Error: Este script debe ejecutarse como root."
+  exit 1
+fi
+
+echo "--- INICIO DE CONFIGURACIÓN AUTOMATIZADA ---"
+
+# 1 &amp; 2. Gestión de Apache2 (Detener y Deshabilitar)
+echo "[1/5] Deteniendo y deshabilitando Apache2..."
+systemctl stop apache2
+systemctl disable apache2
+
+# Liberación forzosa del puerto 80 si Apache se quedó "zombie"
+fuser -k 80/tcp 2&gt;/dev/null
+
+# 3. Instalación de Nginx
+echo "[2/5] Instalando Nginx..."
+apt-get update -qq
+apt-get install nginx -y -qq
+
+# 4 &amp; 8. Creación de contenido web (Directorios e index.html)
+echo "[3/5] Generando contenido web para puertos 80 y 81..."
+mkdir -p /var/www/sitio80
+mkdir -p /var/www/sitio81
+
+echo "&lt;h1&gt;Sitio Web Puerto 80 - Script&lt;/h1&gt;" &gt; /var/www/sitio80/index.html
+echo "&lt;h1&gt;Sitio Web Puerto 81 - Script&lt;/h1&gt;" &gt; /var/www/sitio81/index.html
+
+# Generación del fichero de configuración de Nginx
+echo "[4/5] Escribiendo configuración de VHosts..."
+cat &lt;&lt;EOF &gt; /etc/nginx/sites-available/multi-port
+server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        root /var/www/sitio80;
+        index index.html;
+    }
+}
+
+server {
+    listen 81;
+    server_name localhost;
+
+    location / {
+        root /var/www/sitio81;
+        index index.html;
+    }
+}
+EOF
+
+# Enlace simbólico y limpieza de default
+ln -sf /etc/nginx/sites-available/multi-port /etc/nginx/sites-enabled/
+rm -f /etc/nginx/sites-enabled/default
+
+# 7. Verificación y aplicación
+echo "[5/5] Verificando y reiniciando servicio..."
+if nginx -t; then
+    systemctl restart nginx
+    echo "--- CONFIGURACIÓN COMPLETADA CON ÉXITO ---"
+    
+    # Test local
+    echo "Test Puerto 80:"
+    curl -s http://localhost:80
+    echo ""
+    echo "Test Puerto 81:"
+    curl -s http://localhost:81
+    echo ""
+else
+    echo "Error: La configuración de Nginx no es válida."
+    exit 1
+fi
+</code></pre>
+<p><strong>Instrucciones de ejecución:</strong></p>
+<pre><code class="language-bash">chmod +x setup_nginx.sh
+sudo ./setup_nginx.sh
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="inglés-profesional-gs"><a class="header" href="#inglés-profesional-gs">Inglés profesional (GS)</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>

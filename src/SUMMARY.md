@@ -9,6 +9,7 @@
 - [Ciberseguridad](./ciber.md)
 - [Digitalización aplicada a los sectores productivos (GS)](./digitalizacion.md)
 - [Implantación de aplicaciones web](./iaw.md)
+    - [Tarea Nº 7 - Despliegue Nginx](./tarea7.md)
 - [ Inglés profesional (GS)](./ingles.md)
 - [Seguridad y alta disponibilidad](./sad.md)
 - [Servicios de red e Internet](./sri.md)
