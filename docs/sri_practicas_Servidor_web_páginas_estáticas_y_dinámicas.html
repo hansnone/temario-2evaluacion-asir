@@ -35,10 +35,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-fe7a4425.js";
+            window.path_to_searchindex_js = "searchindex-6bad148e.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-39ed12ec.js"></script>
+        <script src="toc-b64395a4.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -198,101 +198,87 @@
 <p>Aquí un blog con los pasos que ha dado el autor para unir todos los pasos:</p>
 <p>Como instalar PHP sobre IIS 10 en Windows Server 2019 Datacenter – Mtro. Guillermo Humberto Vera Amaro (https://www.uv.mx/personal/gvera/2022/02/26/como-instalar-php-sobre-iis-10-en-windows-server-2019-datacenter/)</p>
 <h2 id="solucion"><a class="header" href="#solucion">Solucion</a></h2>
-<h3 id="1-cambio-de-hostname-gui"><a class="header" href="#1-cambio-de-hostname-gui">1. Cambio de Hostname (GUI)</a></h3>
-<ol>
-<li>Abrir <strong>Server Manager</strong> &gt; <strong>Local Server</strong>.</li>
-<li>Clic en el nombre actual del equipo (junto a “Computer name”).</li>
-<li>En la ventana <strong>System Properties</strong>, pestaña <strong>Computer Name</strong>, clic en <strong>Change…</strong></li>
-<li>En “Computer name”, escribir: <code>WIN-tunombreinicialapellido</code>.</li>
-<li>Clic <strong>OK</strong> &gt; <strong>OK</strong> &gt; <strong>Close</strong>.</li>
-<li>Clic en <strong>Restart Now</strong>.</li>
-</ol>
-<h3 id="2-configuración-dns"><a class="header" href="#2-configuración-dns">2. Configuración DNS</a></h3>
-<ol>
-<li>Abrir <strong>Server Manager</strong> &gt; <strong>Tools</strong> &gt; <strong>DNS</strong>.</li>
-<li>Expandir el servidor. Clic derecho en <strong>Forward Lookup Zones</strong> &gt; <strong>New Zone…</strong></li>
-<li>Wizard: <strong>Next</strong> &gt; <strong>Primary zone</strong> &gt; <strong>Next</strong>.</li>
-<li>Zone name: <code>tunombre.tuapellido</code> &gt; <strong>Next</strong> &gt; <strong>Next</strong> &gt; <strong>Finish</strong>.</li>
-<li>Entrar en la zona creada (panel izquierdo).</li>
-<li>Clic derecho en espacio en blanco (panel derecho) &gt; <strong>New Host (A or AAAA)…</strong></li>
-<li>Name: <code>www</code>.</li>
-<li>IP address: La IP estática de tu servidor.</li>
-<li>Clic <strong>Add Host</strong> &gt; <strong>Done</strong>.</li>
-</ol>
-<h3 id="3-instalación-de-roles-iis-y-cgi"><a class="header" href="#3-instalación-de-roles-iis-y-cgi">3. Instalación de Roles IIS y CGI</a></h3>
-<ol>
-<li><strong>Server Manager</strong> &gt; <strong>Manage</strong> &gt; <strong>Add Roles and Features</strong>.</li>
-<li><strong>Next</strong> hasta “Server Roles”.</li>
-<li>Marcar <strong>Web Server (IIS)</strong>. Aceptar características requeridas.</li>
-<li><strong>Next</strong>. En “Role Services” (dentro de Web Server &gt; Application Development), marcar <strong>CGI</strong>. (Necesario para PHP FastCGI).</li>
-<li><strong>Next</strong> &gt; <strong>Install</strong>.</li>
-</ol>
-<h3 id="4-configuración-del-sitio-web-y-bindings"><a class="header" href="#4-configuración-del-sitio-web-y-bindings">4. Configuración del Sitio Web y Bindings</a></h3>
-<ol>
-<li><strong>Explorador de Archivos</strong>: Ir a <code>C:\inetpub\wwwroot</code>.</li>
-<li>Crear carpeta: <code>www.tunombre.tuapellido</code>.</li>
-<li>Dentro, crear archivo de texto y renombrar a <code>index.html</code>. Pegar contenido HTML.</li>
-<li><strong>Server Manager</strong> &gt; <strong>Tools</strong> &gt; <strong>Internet Information Services (IIS) Manager</strong>.</li>
-<li>Clic derecho en <strong>Sites</strong> &gt; <strong>Add Website…</strong>
-<ul>
-<li><strong>Site name</strong>: <code>www.tunombre.tuapellido</code>.</li>
-<li><strong>Physical path</strong>: Seleccionar la carpeta creada en el paso 2.</li>
-<li><strong>Binding</strong>:
-<ul>
-<li>Type: <code>http</code>.</li>
-<li>IP address: <code>All Unassigned</code> o la IP del servidor.</li>
-<li>Port: <code>80</code>.</li>
-<li><strong>Host name</strong>: <code>www.tunombre.tuapellido</code>.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Clic <strong>OK</strong>.</li>
-</ol>
-<h3 id="5-instalación-y-configuración-php-gui"><a class="header" href="#5-instalación-y-configuración-php-gui">5. Instalación y Configuración PHP (GUI)</a></h3>
-<p><strong>Preparación de archivos:</strong></p>
-<ol>
-<li>Descargar e instalar <strong>Visual C++ Redistributable (x64)</strong> (ejecutable).</li>
-<li>Descargar <strong>PHP (NTS x64)</strong> .zip.</li>
-<li>Extraer el .zip en <code>C:\php</code>.</li>
-<li>En <code>C:\php</code>, buscar <code>php.ini-production</code>. Clic derecho &gt; <strong>Rename</strong> a <code>php.ini</code>.</li>
-<li>Abrir <code>php.ini</code> con Notepad:
-<ul>
-<li>Buscar y quitar el punto y coma (;) inicial de:
-<ul>
-<li><code>extension_dir = "ext"</code></li>
-<li><code>cgi.force_redirect = 0</code></li>
-<li><code>fastcgi.impersonate = 1</code></li>
-<li><code>date.timezone = "Europe/Madrid"</code></li>
-</ul>
-</li>
-<li>Guardar y cerrar.</li>
-</ul>
-</li>
-</ol>
-<p><strong>Configuración en IIS Manager:</strong></p>
-<ol>
-<li>Clic en el nombre del servidor (panel izquierdo).</li>
-<li>Doble clic en icono <strong>Handler Mappings</strong>.</li>
-<li>En panel derecho (Actions), clic <strong>Add Module Mapping…</strong>
-<ul>
-<li><strong>Request path</strong>: <code>*.php</code></li>
-<li><strong>Module</strong>: Seleccionar <code>FastCgiModule</code> (si no aparece, revisa paso 3 de esta guía).</li>
-<li><strong>Executable</strong>: Clic <code>...</code> y buscar <code>C:\php\php-cgi.exe</code>.</li>
-<li><strong>Name</strong>: <code>PHP_FastCGI</code>.</li>
-</ul>
-</li>
-<li>Clic <strong>OK</strong>. Confirmar con <strong>Yes</strong> en el diálogo que aparece.</li>
-<li>Volver al servidor (panel izquierdo). Doble clic en <strong>Default Document</strong>.</li>
-<li>Panel derecho &gt; <strong>Add…</strong> &gt; Escribir <code>index.php</code> &gt; <strong>OK</strong>.</li>
-</ol>
-<h3 id="6-verificación-cliente-windows-11"><a class="header" href="#6-verificación-cliente-windows-11">6. Verificación Cliente (Windows 11)</a></h3>
-<ol>
-<li>En Windows 11: <strong>Configuración</strong> &gt; <strong>Red e Internet</strong> &gt; <strong>Ethernet</strong> (o adaptador Host-Only).</li>
-<li>Editar asignación de servidor DNS.</li>
-<li>Establecer la <strong>IP del Windows Server</strong> como DNS preferido.</li>
-<li>Abrir navegador en cliente y visitar <code>http://www.tunombre.tuapellido/phpinfo.php</code>.</li>
-</ol>
+<h3 id="cambio-de-hostname-y-ajuste-dns"><a class="header" href="#cambio-de-hostname-y-ajuste-dns">Cambio de Hostname y Ajuste DNS</a></h3>
+<p>Acceder a <strong>Administrador del servidor</strong> &gt; Servidor local.
+Clic en el nombre del equipo actual.
+En Propiedades del sistema &gt; Cambiar.
+Asignar nuevo nombre: <strong>WIN-[Inicial][Apellido]</strong> (ej. WIN-JPEREZ).
+Reiniciar el servidor.</p>
+<p>Abrir <strong>Administrador de DNS</strong> (<code>dnsmgmt.msc</code>).
+En Zonas de búsqueda directa &gt; Dominio local.
+Eliminar el registro A antiguo del servidor.
+Verificar o crear nuevo registro A para <strong>WIN-[Inicial][Apellido]</strong> apuntando a la IP estática del servidor.
+Crear un registro CNAME (alias) o A para <strong>www.tunombre.tuapellido</strong> apuntando a la misma IP.</p>
+<h3 id="instalación-de-iis-y-cgi"><a class="header" href="#instalación-de-iis-y-cgi">Instalación de IIS y CGI</a></h3>
+<p>En <strong>Administrador del servidor</strong> &gt; Administrar &gt; Agregar roles y características.
+Seleccionar tipo de instalación basada en características o en roles.
+En Roles del servidor, marcar <strong>Servidor web (IIS)</strong>.
+En Servicios de rol (dentro de Servidor web &gt; Desarrollo de aplicaciones), marcar <strong>CGI</strong> (necesario para FastCGI/PHP).
+Completar la instalación.</p>
+<h3 id="configuración-del-sitio-web-réplica"><a class="header" href="#configuración-del-sitio-web-réplica">Configuración del Sitio Web (Réplica)</a></h3>
+<p>Crear carpeta física: <code>C:\inetpub\wwwroot\websitename</code>.
+Crear archivo <code>index.html</code> con el código HTML de la réplica de la primera página web.
+Abrir <strong>Administrador de Internet Information Services (IIS)</strong>.
+Clic derecho en Sitios &gt; Agregar sitio web.
+Nombre del sitio: <strong>www.tunombre.tuapellido</strong>.
+Ruta de acceso física: Seleccionar la carpeta creada.
+En Enlace &gt; Nombre de host: escribir <strong>www.tunombre.tuapellido</strong>.</p>
+<h3 id="site-bindings-y-test-localhost"><a class="header" href="#site-bindings-y-test-localhost">Site Bindings y Test Localhost</a></h3>
+<p>En IIS, seleccionar el sitio creado.
+En el panel de acciones (derecha), clic en <strong>Enlaces…</strong> (Bindings).
+Verificar que el tipo es <code>http</code>, puerto <code>80</code> y Nombre de host <code>www.tunombre.tuapellido</code>.</p>
+<p><strong>Prueba localhost:</strong>
+Abrir navegador en el servidor y acceder a <code>http://localhost</code>.
+<strong>Resultado:</strong> Error 404 o página por defecto de IIS (IIS Welcome), no el sitio creado.
+<strong>Explicación:</strong> El servidor web recibe la petición, pero al tener un <em>Host Header</em> definido en el enlace (“www…”), IIS descarta las peticiones que llegan con la cabecera “localhost”. Solo sirve el contenido si la cabecera HTTP coincide estrictamente.</p>
+<h3 id="instalación-y-configuración-de-php-nts"><a class="header" href="#instalación-y-configuración-de-php-nts">Instalación y Configuración de PHP (NTS)</a></h3>
+<p><strong>Descarga y Preparación:</strong>
+Descargar e instalar <strong>Visual C++ Redistributable</strong> (vc_redist.x64.exe).
+Descargar <strong>PHP Non-Thread Safe (NTS)</strong> x64 zip.
+Descomprimir en <code>C:\PHP</code>.
+Renombrar <code>php.ini-production</code> a <code>php.ini</code>.</p>
+<p><strong>Edición de php.ini:</strong>
+Abrir <code>php.ini</code> con editor de texto.
+Descomentar y ajustar <code>extension_dir = "ext"</code>.
+Descomentar <code>extension=curl</code>, <code>extension=mbstring</code>, <code>extension=mysqli</code> (según necesidad).
+Configurar zona horaria: <code>date.timezone = "Europe/Madrid"</code>.
+Guardar cambios.</p>
+<p><strong>Variables de Entorno:</strong>
+Sistema &gt; Configuración avanzada del sistema &gt; Variables de entorno.
+En Variables del sistema, editar <strong>Path</strong>.
+Agregar nueva ruta: <code>C:\PHP</code>.</p>
+<p><strong>Integración en IIS:</strong>
+Abrir Administrador de IIS.
+Clic en el nombre del servidor (panel izquierdo).
+Doble clic en <strong>Asignaciones de controlador</strong> (Handler Mappings).
+En el panel derecho, clic en <strong>Agregar asignación de módulo</strong>.
+Ruta de acceso de solicitudes: <code>*.php</code>
+Módulo: <strong>FastCgiModule</strong> (Seleccionar de la lista. Si no aparece, revisar instalación del rol CGI).
+Ejecutable: <code>C:\PHP\php-cgi.exe</code>.
+Nombre: <strong>PHP_FastCGI</strong>.
+Confirmar diálogo de autorización.</p>
+<p>Mover <code>index.php</code> a Documento predeterminado (Default Document) si se desea prioridad sobre html.</p>
+<h3 id="script-php-y-acceso-cliente"><a class="header" href="#script-php-y-acceso-cliente">Script PHP y Acceso Cliente</a></h3>
+<p><strong>Creación de Scripts:</strong>
+En <code>C:\inetpub\wwwroot\websitename</code>, crear archivo <code>phpinfo.php</code>:</p>
+<pre><code class="language-php">&lt;?php phpinfo(); ?&gt;
+</code></pre>
+<p>Crear archivo para info cliente (ej. <code>info_cliente.php</code>):</p>
+<pre><code class="language-php">&lt;?php
+echo "&lt;h1&gt;Información del Cliente&lt;/h1&gt;";
+echo "IP del Cliente: " . $_SERVER['REMOTE_ADDR'] . "&lt;br&gt;";
+echo "Navegador: " . $_SERVER['HTTP_USER_AGENT'] . "&lt;br&gt;";
+echo "Servidor: " . $_SERVER['SERVER_NAME'];
+?&gt;
+</code></pre>
+<p><strong>Configuración Cliente (Windows 11):</strong>
+Configurar adaptador de red en VirtualBox como <strong>Red interna</strong> o <strong>Adaptador solo anfitrión</strong> (Host-only), asegurando visibilidad con el servidor.
+Configurar DNS del cliente: Asignar la IP estática del Windows Server como DNS preferido.
+Alternativa sin DNS: Editar <code>C:\Windows\System32\drivers\etc\hosts</code> en el cliente y añadir:
+<code>&lt;IP_SERVER&gt; www.tunombre.tuapellido</code></p>
+<p><strong>Validación:</strong>
+Navegador cliente &gt; <code>http://www.tunombre.tuapellido/phpinfo.php</code>.
+Navegador cliente &gt; <code>http://www.tunombre.tuapellido/info_cliente.php</code>.</p>
 
                     </main>
 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Ciberseguridad - Temario completo unificado de ASIR</title>
+        <title>practica 10.3 Hashcat - Temario completo unificado de ASIR</title>
 
 
         <!-- Custom HTML head -->
@@ -174,17 +174,56 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="ciberseguridad"><a class="header" href="#ciberseguridad">Ciberseguridad</a></h1>
+                        <h1 id="practica-103-hashcat"><a class="header" href="#practica-103-hashcat">practica 10.3 Hashcat</a></h1>
+<h1 id="actividad-103"><a class="header" href="#actividad-103">Actividad 10.3</a></h1>
+<blockquote>
+<p>Pedro de Cabo Arroyo, 2ºB ASIR, Ciberseguridad.</p>
+</blockquote>
+<p>Hashcat es una herramienta avanzada de recuperación de contraseñas que utiliza técnicas de fuerza bruta y ataques de diccionario para descifrar hashes. En mi caso podre usar la GPU de mi portatil.</p>
+<p>Para esta practica he generado mi propio hash de <code>madrid:ed2539fe892d2c52c42a440354e8e3d5</code></p>
+<p><img src="images/181007.png" alt="Genero el has de mi contraseña “madrid”."></p>
+<h2 id="paso-1--identifica-el-tipo-de-hash-utilizando-hash-identifier"><a class="header" href="#paso-1--identifica-el-tipo-de-hash-utilizando-hash-identifier">Paso 1.- Identifica el tipo de hash utilizando hash-identifier</a></h2>
+<p>Para determinar el algoritmo utilizado en la cadena <code>ed2539fe892d2c52c42a440354e8e3d5</code>, se emplea la herramienta <code>hash-identifier</code>. Esta utilidad analiza la longitud y el formato de la cadena hexadecimal para sugerir el tipo de hash más probable.</p>
+<p><strong>Ejecución:</strong></p>
+<pre><code class="language-bash">hash-identifier
+</code></pre>
+<p>Al introducir el hash cuando se solicita, el sistema devuelve los resultados más probables. Dado que es una cadena de 32 caracteres hexadecimales, el resultado principal será <strong>MD5</strong>.</p>
+<p><img src="images/181227.png" alt="Hash-identifier."></p>
+<p><em>Nota: El hash corresponde a la cadena de texto “madrid”.</em></p>
+<hr>
+<h3 id="paso-2--descifra-el-hash-con-hashcat"><a class="header" href="#paso-2--descifra-el-hash-con-hashcat">Paso 2.- Descifra el hash con HashCat</a></h3>
+<p>Hashcat se utiliza para recuperar la contraseña mediante fuerza bruta o ataques de diccionario, aprovechando la potencia de la GPU para acelerar el proceso. Aunque puede ejecutarse en CPU, el rendimiento es significativamente menor.</p>
+<p>Es mi equipo y con el puedo hacer lo que quiera.</p>
+<p><strong>Sintaxis del comando:</strong></p>
+<pre><code class="language-bash">hashcat -m 0 -a 3 ed2539fe892d2c52c42a440354e8e3d5
+</code></pre>
+<p><img src="images/181505.png" alt="Fuerza bruta."></p>
+<p><strong>Explicación de parámetros:</strong></p>
+<ul>
+<li><strong><code>hashcat</code></strong>: Ejecutable de la herramienta.</li>
+<li><strong><code>-m 0</code></strong>: Especifica el tipo de hash (Mode). El modo <code>0</code> corresponde a <strong>MD5</strong>, identificado en el paso anterior. Hashcat soporta una amplia gama de algoritmos.</li>
+<li><strong><code>-a 3</code></strong>: Define el modo de ataque (Attack Mode). Se selecciona <strong>Brute-Force</strong> (Fuerza bruta con máscara).</li>
+<li><strong><code>ed2...3d5</code></strong>: El hash objetivo a descifrar.</li>
+</ul>
+<p><strong>Salida exitosa:</strong>
+Tras la ejecución, Hashcat mostrará el estado <code>Cracked</code> y la cadena en texto plano:
+<code>ed2539fe892d2c52c42a440354e8e3d5:madrid</code></p>
+<p>Si se utilizara un archivo de diccionario (ej. <code>rockyou.txt</code>) en lugar de fuerza bruta pura, el comando cambiaría el modo de ataque a <code>-a 0</code>:</p>
+<pre><code class="language-bash">hashcat -m 0 -a 0 hash.txt /Proyectos/rockyou.txt
+</code></pre>
+<p>El resultado final:</p>
+<p><img src="images/182145.png" alt="Primer comando."></p>
+<p><img src="images/182134.png" alt="Segundo comando."></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="aso.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ciber_practicas.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="ciber_teoria.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="digitalizacion.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -194,11 +233,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="aso.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ciber_practicas.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="ciber_teoria.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="digitalizacion.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
