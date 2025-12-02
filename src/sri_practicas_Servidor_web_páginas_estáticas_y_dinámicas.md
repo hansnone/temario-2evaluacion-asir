@@ -30,81 +30,108 @@ Como instalar PHP sobre IIS 10 en Windows Server 2019 Datacenter – Mtro. Guill
 
 ## Solucion
 
-### 1. Cambio de Hostname (GUI)
+### Cambio de Hostname y Ajuste DNS
 
-1.  Abrir **Server Manager** > **Local Server**.
-2.  Clic en el nombre actual del equipo (junto a "Computer name").
-3.  En la ventana **System Properties**, pestaña **Computer Name**, clic en **Change...**
-4.  En "Computer name", escribir: `WIN-tunombreinicialapellido`.
-5.  Clic **OK** > **OK** > **Close**.
-6.  Clic en **Restart Now**.
+Acceder a **Administrador del servidor** \> Servidor local.
+Clic en el nombre del equipo actual.
+En Propiedades del sistema \> Cambiar.
+Asignar nuevo nombre: **WIN-[Inicial][Apellido]** (ej. WIN-JPEREZ).
+Reiniciar el servidor.
 
-### 2. Configuración DNS
+Abrir **Administrador de DNS** (`dnsmgmt.msc`).
+En Zonas de búsqueda directa \> Dominio local.
+Eliminar el registro A antiguo del servidor.
+Verificar o crear nuevo registro A para **WIN-[Inicial][Apellido]** apuntando a la IP estática del servidor.
+Crear un registro CNAME (alias) o A para **www.tunombre.tuapellido** apuntando a la misma IP.
 
-1.  Abrir **Server Manager** > **Tools** > **DNS**.
-2.  Expandir el servidor. Clic derecho en **Forward Lookup Zones** > **New Zone...**
-3.  Wizard: **Next** > **Primary zone** > **Next**.
-4.  Zone name: `tunombre.tuapellido` > **Next** > **Next** > **Finish**.
-5.  Entrar en la zona creada (panel izquierdo).
-6.  Clic derecho en espacio en blanco (panel derecho) > **New Host (A or AAAA)...**
-7.  Name: `www`.
-8.  IP address: La IP estática de tu servidor.
-9.  Clic **Add Host** > **Done**.
+### Instalación de IIS y CGI
 
-### 3. Instalación de Roles IIS y CGI
+En **Administrador del servidor** \> Administrar \> Agregar roles y características.
+Seleccionar tipo de instalación basada en características o en roles.
+En Roles del servidor, marcar **Servidor web (IIS)**.
+En Servicios de rol (dentro de Servidor web \> Desarrollo de aplicaciones), marcar **CGI** (necesario para FastCGI/PHP).
+Completar la instalación.
 
-1.  **Server Manager** > **Manage** > **Add Roles and Features**.
-2.  **Next** hasta "Server Roles".
-3.  Marcar **Web Server (IIS)**. Aceptar características requeridas.
-4.  **Next**. En "Role Services" (dentro de Web Server > Application Development), marcar **CGI**. (Necesario para PHP FastCGI).
-5.  **Next** > **Install**.
+### Configuración del Sitio Web (Réplica)
 
-### 4. Configuración del Sitio Web y Bindings
+Crear carpeta física: `C:\inetpub\wwwroot\websitename`.
+Crear archivo `index.html` con el código HTML de la réplica de la primera página web.
+Abrir **Administrador de Internet Information Services (IIS)**.
+Clic derecho en Sitios \> Agregar sitio web.
+Nombre del sitio: **www.tunombre.tuapellido**.
+Ruta de acceso física: Seleccionar la carpeta creada.
+En Enlace \> Nombre de host: escribir **www.tunombre.tuapellido**.
 
-1.  **Explorador de Archivos**: Ir a `C:\inetpub\wwwroot`.
-2.  Crear carpeta: `www.tunombre.tuapellido`.
-3.  Dentro, crear archivo de texto y renombrar a `index.html`. Pegar contenido HTML.
-4.  **Server Manager** > **Tools** > **Internet Information Services (IIS) Manager**.
-5.  Clic derecho en **Sites** > **Add Website...**
-    * **Site name**: `www.tunombre.tuapellido`.
-    * **Physical path**: Seleccionar la carpeta creada en el paso 2.
-    * **Binding**:
-        * Type: `http`.
-        * IP address: `All Unassigned` o la IP del servidor.
-        * Port: `80`.
-        * **Host name**: `www.tunombre.tuapellido`.
-6.  Clic **OK**.
+### Site Bindings y Test Localhost
 
-### 5. Instalación y Configuración PHP (GUI)
+En IIS, seleccionar el sitio creado.
+En el panel de acciones (derecha), clic en **Enlaces...** (Bindings).
+Verificar que el tipo es `http`, puerto `80` y Nombre de host `www.tunombre.tuapellido`.
 
-**Preparación de archivos:**
-1.  Descargar e instalar **Visual C++ Redistributable (x64)** (ejecutable).
-2.  Descargar **PHP (NTS x64)** .zip.
-3.  Extraer el .zip en `C:\php`.
-4.  En `C:\php`, buscar `php.ini-production`. Clic derecho > **Rename** a `php.ini`.
-5.  Abrir `php.ini` con Notepad:
-    * Buscar y quitar el punto y coma (;) inicial de:
-        * `extension_dir = "ext"`
-        * `cgi.force_redirect = 0`
-        * `fastcgi.impersonate = 1`
-        * `date.timezone = "Europe/Madrid"`
-    * Guardar y cerrar.
+**Prueba localhost:**
+Abrir navegador en el servidor y acceder a `http://localhost`.
+**Resultado:** Error 404 o página por defecto de IIS (IIS Welcome), no el sitio creado.
+**Explicación:** El servidor web recibe la petición, pero al tener un *Host Header* definido en el enlace ("www..."), IIS descarta las peticiones que llegan con la cabecera "localhost". Solo sirve el contenido si la cabecera HTTP coincide estrictamente.
 
-**Configuración en IIS Manager:**
-1.  Clic en el nombre del servidor (panel izquierdo).
-2.  Doble clic en icono **Handler Mappings**.
-3.  En panel derecho (Actions), clic **Add Module Mapping...**
-    * **Request path**: `*.php`
-    * **Module**: Seleccionar `FastCgiModule` (si no aparece, revisa paso 3 de esta guía).
-    * **Executable**: Clic `...` y buscar `C:\php\php-cgi.exe`.
-    * **Name**: `PHP_FastCGI`.
-4.  Clic **OK**. Confirmar con **Yes** en el diálogo que aparece.
-5.  Volver al servidor (panel izquierdo). Doble clic en **Default Document**.
-6.  Panel derecho > **Add...** > Escribir `index.php` > **OK**.
+### Instalación y Configuración de PHP (NTS)
 
-### 6. Verificación Cliente (Windows 11)
+**Descarga y Preparación:**
+Descargar e instalar **Visual C++ Redistributable** (vc\_redist.x64.exe).
+Descargar **PHP Non-Thread Safe (NTS)** x64 zip.
+Descomprimir en `C:\PHP`.
+Renombrar `php.ini-production` a `php.ini`.
 
-1.  En Windows 11: **Configuración** > **Red e Internet** > **Ethernet** (o adaptador Host-Only).
-2.  Editar asignación de servidor DNS.
-3.  Establecer la **IP del Windows Server** como DNS preferido.
-4.  Abrir navegador en cliente y visitar `http://www.tunombre.tuapellido/phpinfo.php`.
+**Edición de php.ini:**
+Abrir `php.ini` con editor de texto.
+Descomentar y ajustar `extension_dir = "ext"`.
+Descomentar `extension=curl`, `extension=mbstring`, `extension=mysqli` (según necesidad).
+Configurar zona horaria: `date.timezone = "Europe/Madrid"`.
+Guardar cambios.
+
+**Variables de Entorno:**
+Sistema \> Configuración avanzada del sistema \> Variables de entorno.
+En Variables del sistema, editar **Path**.
+Agregar nueva ruta: `C:\PHP`.
+
+**Integración en IIS:**
+Abrir Administrador de IIS.
+Clic en el nombre del servidor (panel izquierdo).
+Doble clic en **Asignaciones de controlador** (Handler Mappings).
+En el panel derecho, clic en **Agregar asignación de módulo**.
+Ruta de acceso de solicitudes: `*.php`
+Módulo: **FastCgiModule** (Seleccionar de la lista. Si no aparece, revisar instalación del rol CGI).
+Ejecutable: `C:\PHP\php-cgi.exe`.
+Nombre: **PHP\_FastCGI**.
+Confirmar diálogo de autorización.
+
+Mover `index.php` a Documento predeterminado (Default Document) si se desea prioridad sobre html.
+
+### Script PHP y Acceso Cliente
+
+**Creación de Scripts:**
+En `C:\inetpub\wwwroot\websitename`, crear archivo `phpinfo.php`:
+
+```php
+<?php phpinfo(); ?>
+```
+
+Crear archivo para info cliente (ej. `info_cliente.php`):
+
+```php
+<?php
+echo "<h1>Información del Cliente</h1>";
+echo "IP del Cliente: " . $_SERVER['REMOTE_ADDR'] . "<br>";
+echo "Navegador: " . $_SERVER['HTTP_USER_AGENT'] . "<br>";
+echo "Servidor: " . $_SERVER['SERVER_NAME'];
+?>
+```
+
+**Configuración Cliente (Windows 11):**
+Configurar adaptador de red en VirtualBox como **Red interna** o **Adaptador solo anfitrión** (Host-only), asegurando visibilidad con el servidor.
+Configurar DNS del cliente: Asignar la IP estática del Windows Server como DNS preferido.
+Alternativa sin DNS: Editar `C:\Windows\System32\drivers\etc\hosts` en el cliente y añadir:
+`<IP_SERVER> www.tunombre.tuapellido`
+
+**Validación:**
+Navegador cliente \> `http://www.tunombre.tuapellido/phpinfo.php`.
+Navegador cliente \> `http://www.tunombre.tuapellido/info_cliente.php`.
