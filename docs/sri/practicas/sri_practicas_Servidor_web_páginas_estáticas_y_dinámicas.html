@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found - Temario completo unificado de ASIR</title>
-        <base href="/">
+        <title>Practicas servidor web paginas estaticas - Temario completo unificado de ASIR</title>
 
 
         <!-- Custom HTML head -->
@@ -13,33 +12,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="favicon-8114d1fc.png">
-        <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-2459343d.css">
-        <link rel="stylesheet" href="css/chrome-ae938929.css">
-        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="../../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../../css/general-2459343d.css">
+        <link rel="stylesheet" href="../../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "";
+            const path_to_root = "../../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-93b02cf3.js";
+            window.path_to_searchindex_js = "../../searchindex-93b02cf3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-ab20706c.js"></script>
+        <script src="../../toc-ab20706c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -106,7 +105,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -141,7 +140,7 @@
                     <h1 class="menu-title">Temario completo unificado de ASIR</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -175,14 +174,123 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="practicas"><a class="header" href="#practicas">Practicas</a></h1>
+<p>Utiliza el equipo Windows Server de la práctica anterior que ya dispone de rol de DHCP y DNS. Tendrás que cambiar el hostname por <strong>WIN-tunombreinicialapellido</strong>, esto requerirá que adaptes los registros de DNS para que recojan los cambios.</p>
+<p>Instala el rol de <strong>IIS</strong> en el Windows Server. Presenta una captura con la página <strong>www.tunombre.tuapellido</strong> que será una réplica de la primera página de Internet (mira los debates para saber más sobre esto). <em>(4 puntos contenido mínimo)</em></p>
+<p>Configura los enlaces del sitio (<strong>site bindings</strong>) para que sea accesible sólo por <strong>www.tunombre.tuapellido</strong>. Accede desde el propio Windows Server con <code>http://localhost</code>. Presenta captura del site binding, explica qué ocurre. <em>(2 puntos)</em></p>
+<p>Realiza una instalación de <strong>PHP</strong> para disponer de una página dinámica (no estática como la anterior). Ten en cuenta los siguientes manuales:</p>
+<ul>
+<li>Paso 0. Últimas descargas de Visual C++ Redistributable compatibles | Microsoft Learn  (https://learn.microsoft.com/es-es/cpp/windows/latest-supported-vc-redist?view=msvc-170#latest-supported-redistributable-version)</li>
+<li>PHP For Windows: Binaries and sources Releases (https://windows.php.net/download/)</li>
+</ul>
+<p><strong>IIS</strong><br>Si usas PHP como <strong>FastCGI</strong> con IIS debes usar las versiones <strong>Non-Thread Safe (NTS)</strong> de PHP.</p>
+<ul>
+<li>FastCGI <code>&lt;fastCgi&gt;</code> | Microsoft Learn (https://learn.microsoft.com/en-us/iis/configuration/system.webserver/fastcgi/)</li>
+<li>Step 1: Install IIS and PHP | Microsoft Learn (https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh994592(v=ws.11)#13-download-and-install-php-manually)</li>
+<li>PHP: Instalación con IIS para Windows - Manual (https://www.php.net/manual/es/install.windows.iis.php)</li>
+</ul>
+<p>Captura (donde se vea autoría - nombre del servidor con tu nombre y apellidos) semejante a esta con el acceso a la página <code>http://www.tunombre.tuapellido/phpinfo.php</code>. <em>(3 puntos)</em><br>Si no consigues llegar hasta aquí, presenta captura/vídeo con el último paso dado: directorio con la instalación, ejecución de script, etc. Captura del mismo acceso desde un equipo cliente (puedes utilizar el Windows 11 de la otra práctica). Requiere configuración de <strong>host-only</strong> en VirtualBox. Adapta el php para que muestre información del cliente <em>(1 punto)</em></p>
+<ul>
+<li>Información del cliente y servidor con PHP - Victor Robles | Victor (https://victorroblesweb.es/2013/11/18/informacion-del-cliente-y-servidor-con-php/)</li>
+</ul>
+<p><img src="images/img_1.png" alt="img_1"></p>
+<p>En total cuatro capturas.</p>
+<p>Aquí un blog con los pasos que ha dado el autor para unir todos los pasos:</p>
+<p>Como instalar PHP sobre IIS 10 en Windows Server 2019 Datacenter – Mtro. Guillermo Humberto Vera Amaro (https://www.uv.mx/personal/gvera/2022/02/26/como-instalar-php-sobre-iis-10-en-windows-server-2019-datacenter/)</p>
+<h2 id="solucion"><a class="header" href="#solucion">Solucion</a></h2>
+<h3 id="cambio-de-hostname-y-ajuste-dns"><a class="header" href="#cambio-de-hostname-y-ajuste-dns">Cambio de Hostname y Ajuste DNS</a></h3>
+<p>Acceder a <strong>Administrador del servidor</strong> &gt; Servidor local.
+Clic en el nombre del equipo actual.
+En Propiedades del sistema &gt; Cambiar.
+Asignar nuevo nombre: <strong>WIN-[Inicial][Apellido]</strong> (ej. WIN-JPEREZ).
+Reiniciar el servidor.</p>
+<p>Abrir <strong>Administrador de DNS</strong> (<code>dnsmgmt.msc</code>).
+En Zonas de búsqueda directa &gt; Dominio local.
+Eliminar el registro A antiguo del servidor.
+Verificar o crear nuevo registro A para <strong>WIN-[Inicial][Apellido]</strong> apuntando a la IP estática del servidor.
+Crear un registro CNAME (alias) o A para <strong>www.tunombre.tuapellido</strong> apuntando a la misma IP.</p>
+<h3 id="instalación-de-iis-y-cgi"><a class="header" href="#instalación-de-iis-y-cgi">Instalación de IIS y CGI</a></h3>
+<p>En <strong>Administrador del servidor</strong> &gt; Administrar &gt; Agregar roles y características.
+Seleccionar tipo de instalación basada en características o en roles.
+En Roles del servidor, marcar <strong>Servidor web (IIS)</strong>.
+En Servicios de rol (dentro de Servidor web &gt; Desarrollo de aplicaciones), marcar <strong>CGI</strong> (necesario para FastCGI/PHP).
+Completar la instalación.</p>
+<h3 id="configuración-del-sitio-web-réplica"><a class="header" href="#configuración-del-sitio-web-réplica">Configuración del Sitio Web (Réplica)</a></h3>
+<p>Crear carpeta física: <code>C:\inetpub\wwwroot\websitename</code>.
+Crear archivo <code>index.html</code> con el código HTML de la réplica de la primera página web.
+Abrir <strong>Administrador de Internet Information Services (IIS)</strong>.
+Clic derecho en Sitios &gt; Agregar sitio web.
+Nombre del sitio: <strong>www.tunombre.tuapellido</strong>.
+Ruta de acceso física: Seleccionar la carpeta creada.
+En Enlace &gt; Nombre de host: escribir <strong>www.tunombre.tuapellido</strong>.</p>
+<h3 id="site-bindings-y-test-localhost"><a class="header" href="#site-bindings-y-test-localhost">Site Bindings y Test Localhost</a></h3>
+<p>En IIS, seleccionar el sitio creado.
+En el panel de acciones (derecha), clic en <strong>Enlaces…</strong> (Bindings).
+Verificar que el tipo es <code>http</code>, puerto <code>80</code> y Nombre de host <code>www.tunombre.tuapellido</code>.</p>
+<p><strong>Prueba localhost:</strong>
+Abrir navegador en el servidor y acceder a <code>http://localhost</code>.
+<strong>Resultado:</strong> Error 404 o página por defecto de IIS (IIS Welcome), no el sitio creado.
+<strong>Explicación:</strong> El servidor web recibe la petición, pero al tener un <em>Host Header</em> definido en el enlace (“www…”), IIS descarta las peticiones que llegan con la cabecera “localhost”. Solo sirve el contenido si la cabecera HTTP coincide estrictamente.</p>
+<h3 id="instalación-y-configuración-de-php-nts"><a class="header" href="#instalación-y-configuración-de-php-nts">Instalación y Configuración de PHP (NTS)</a></h3>
+<p><strong>Descarga y Preparación:</strong>
+Descargar e instalar <strong>Visual C++ Redistributable</strong> (vc_redist.x64.exe).
+Descargar <strong>PHP Non-Thread Safe (NTS)</strong> x64 zip.
+Descomprimir en <code>C:\PHP</code>.
+Renombrar <code>php.ini-production</code> a <code>php.ini</code>.</p>
+<p><strong>Edición de php.ini:</strong>
+Abrir <code>php.ini</code> con editor de texto.
+Descomentar y ajustar <code>extension_dir = "ext"</code>.
+Descomentar <code>extension=curl</code>, <code>extension=mbstring</code>, <code>extension=mysqli</code> (según necesidad).
+Configurar zona horaria: <code>date.timezone = "Europe/Madrid"</code>.
+Guardar cambios.</p>
+<p><strong>Variables de Entorno:</strong>
+Sistema &gt; Configuración avanzada del sistema &gt; Variables de entorno.
+En Variables del sistema, editar <strong>Path</strong>.
+Agregar nueva ruta: <code>C:\PHP</code>.</p>
+<p><strong>Integración en IIS:</strong>
+Abrir Administrador de IIS.
+Clic en el nombre del servidor (panel izquierdo).
+Doble clic en <strong>Asignaciones de controlador</strong> (Handler Mappings).
+En el panel derecho, clic en <strong>Agregar asignación de módulo</strong>.
+Ruta de acceso de solicitudes: <code>*.php</code>
+Módulo: <strong>FastCgiModule</strong> (Seleccionar de la lista. Si no aparece, revisar instalación del rol CGI).
+Ejecutable: <code>C:\PHP\php-cgi.exe</code>.
+Nombre: <strong>PHP_FastCGI</strong>.
+Confirmar diálogo de autorización.</p>
+<p>Mover <code>index.php</code> a Documento predeterminado (Default Document) si se desea prioridad sobre html.</p>
+<h3 id="script-php-y-acceso-cliente"><a class="header" href="#script-php-y-acceso-cliente">Script PHP y Acceso Cliente</a></h3>
+<p><strong>Creación de Scripts:</strong>
+En <code>C:\inetpub\wwwroot\websitename</code>, crear archivo <code>phpinfo.php</code>:</p>
+<pre><code class="language-php">&lt;?php phpinfo(); ?&gt;
+</code></pre>
+<p>Crear archivo para info cliente (ej. <code>info_cliente.php</code>):</p>
+<pre><code class="language-php">&lt;?php
+echo "&lt;h1&gt;Información del Cliente&lt;/h1&gt;";
+echo "IP del Cliente: " . $_SERVER['REMOTE_ADDR'] . "&lt;br&gt;";
+echo "Navegador: " . $_SERVER['HTTP_USER_AGENT'] . "&lt;br&gt;";
+echo "Servidor: " . $_SERVER['SERVER_NAME'];
+?&gt;
+</code></pre>
+<p><strong>Configuración Cliente (Windows 11):</strong>
+Configurar adaptador de red en VirtualBox como <strong>Red interna</strong> o <strong>Adaptador solo anfitrión</strong> (Host-only), asegurando visibilidad con el servidor.
+Configurar DNS del cliente: Asignar la IP estática del Windows Server como DNS preferido.
+Alternativa sin DNS: Editar <code>C:\Windows\System32\drivers\etc\hosts</code> en el cliente y añadir:
+<code>&lt;IP_SERVER&gt; www.tunombre.tuapellido</code></p>
+<p><strong>Validación:</strong>
+Navegador cliente &gt; <code>http://www.tunombre.tuapellido/phpinfo.php</code>.
+Navegador cliente &gt; <code>http://www.tunombre.tuapellido/info_cliente.php</code>.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../sri/practicas/sri_practicas.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
 
+                            <a rel="next prefetch" href="../../sostenibilidad/sostenibilidad.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -190,7 +298,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../sri/practicas/sri_practicas.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
 
+                    <a rel="next prefetch" href="../../sostenibilidad/sostenibilidad.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>
@@ -224,13 +338,13 @@
         </script>
 
 
-        <script src="elasticlunr-ef4e11c1.min.js"></script>
-        <script src="mark-09e88c2c.min.js"></script>
-        <script src="searcher-c2a407aa.js"></script>
+        <script src="../../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../../mark-09e88c2c.min.js"></script>
+        <script src="../../searcher-c2a407aa.js"></script>
 
-        <script src="clipboard-1626706a.min.js"></script>
-        <script src="highlight-abc7f01d.js"></script>
-        <script src="book-a0b12cfe.js"></script>
+        <script src="../../clipboard-1626706a.min.js"></script>
+        <script src="../../highlight-abc7f01d.js"></script>
+        <script src="../../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
 

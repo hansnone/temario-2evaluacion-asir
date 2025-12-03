@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-6bad148e.js";
+            window.path_to_searchindex_js = "searchindex-93b02cf3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-b64395a4.js"></script>
+        <script src="toc-ab20706c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -289,19 +289,16 @@ Besi de fresi.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="practica-103-hashcat"><a class="header" href="#practica-103-hashcat">practica 10.3 Hashcat</a></h1>
 <h1 id="actividad-103"><a class="header" href="#actividad-103">Actividad 10.3</a></h1>
-<blockquote>
-<p>Pedro de Cabo Arroyo, 2ºB ASIR, Ciberseguridad.</p>
-</blockquote>
 <p>Hashcat es una herramienta avanzada de recuperación de contraseñas que utiliza técnicas de fuerza bruta y ataques de diccionario para descifrar hashes. En mi caso podre usar la GPU de mi portatil.</p>
 <p>Para esta practica he generado mi propio hash de <code>madrid:ed2539fe892d2c52c42a440354e8e3d5</code></p>
-<p><img src="images/181007.png" alt="Genero el has de mi contraseña “madrid”."></p>
+<p><img src="ciber/practicas/images/181007.png" alt="Genero el has de mi contraseña “madrid”."></p>
 <h2 id="paso-1--identifica-el-tipo-de-hash-utilizando-hash-identifier"><a class="header" href="#paso-1--identifica-el-tipo-de-hash-utilizando-hash-identifier">Paso 1.- Identifica el tipo de hash utilizando hash-identifier</a></h2>
 <p>Para determinar el algoritmo utilizado en la cadena <code>ed2539fe892d2c52c42a440354e8e3d5</code>, se emplea la herramienta <code>hash-identifier</code>. Esta utilidad analiza la longitud y el formato de la cadena hexadecimal para sugerir el tipo de hash más probable.</p>
 <p><strong>Ejecución:</strong></p>
 <pre><code class="language-bash">hash-identifier
 </code></pre>
 <p>Al introducir el hash cuando se solicita, el sistema devuelve los resultados más probables. Dado que es una cadena de 32 caracteres hexadecimales, el resultado principal será <strong>MD5</strong>.</p>
-<p><img src="images/181227.png" alt="Hash-identifier."></p>
+<p><img src="ciber/practicas/images/181227.png" alt="Hash-identifier."></p>
 <p><em>Nota: El hash corresponde a la cadena de texto “madrid”.</em></p>
 <hr>
 <h3 id="paso-2--descifra-el-hash-con-hashcat"><a class="header" href="#paso-2--descifra-el-hash-con-hashcat">Paso 2.- Descifra el hash con HashCat</a></h3>
@@ -310,7 +307,7 @@ Besi de fresi.</p>
 <p><strong>Sintaxis del comando:</strong></p>
 <pre><code class="language-bash">hashcat -m 0 -a 3 ed2539fe892d2c52c42a440354e8e3d5
 </code></pre>
-<p><img src="images/181505.png" alt="Fuerza bruta."></p>
+<p><img src="ciber/practicas/images/181505.png" alt="Fuerza bruta."></p>
 <p><strong>Explicación de parámetros:</strong></p>
 <ul>
 <li><strong><code>hashcat</code></strong>: Ejecutable de la herramienta.</li>
@@ -325,8 +322,8 @@ Tras la ejecución, Hashcat mostrará el estado <code>Cracked</code> y la cadena
 <pre><code class="language-bash">hashcat -m 0 -a 0 hash.txt /Proyectos/rockyou.txt
 </code></pre>
 <p>El resultado final:</p>
-<p><img src="images/182145.png" alt="Primer comando."></p>
-<p><img src="images/182134.png" alt="Segundo comando."></p>
+<p><img src="ciber/practicas/images/182145.png" alt="Primer comando."></p>
+<p><img src="ciber/practicas/images/182134.png" alt="Segundo comando."></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="digitalización-aplicada-a-los-sectores-productivos-gs"><a class="header" href="#digitalización-aplicada-a-los-sectores-productivos-gs">Digitalización aplicada a los sectores productivos (GS)</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -678,7 +675,7 @@ La salida <strong>verbosa</strong> incluye:</p>
 <ul>
 <li>Información del cliente y servidor con PHP - Victor Robles | Victor (https://victorroblesweb.es/2013/11/18/informacion-del-cliente-y-servidor-con-php/)</li>
 </ul>
-<p><img src="images/img_1.png" alt="img_1"></p>
+<p><img src="sri/practicas/images/img_1.png" alt="img_1"></p>
 <p>En total cuatro capturas.</p>
 <p>Aquí un blog con los pasos que ha dado el autor para unir todos los pasos:</p>
 <p>Como instalar PHP sobre IIS 10 en Windows Server 2019 Datacenter – Mtro. Guillermo Humberto Vera Amaro (https://www.uv.mx/personal/gvera/2022/02/26/como-instalar-php-sobre-iis-10-en-windows-server-2019-datacenter/)</p>
@@ -766,6 +763,18 @@ Navegador cliente &gt; <code>http://www.tunombre.tuapellido/phpinfo.php</code>.
 Navegador cliente &gt; <code>http://www.tunombre.tuapellido/info_cliente.php</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="sostenibilidad-aplicada-al-sistema-productivo"><a class="header" href="#sostenibilidad-aplicada-al-sistema-productivo">Sostenibilidad aplicada al sistema productivo</a></h1>
+<h1 id="nombre-y-apellidos"><a class="header" href="#nombre-y-apellidos">Nombre y Apellidos</a></h1>
+<p>Irene Burn García</p>
+<h1 id="especialidad--estudios"><a class="header" href="#especialidad--estudios">Especialidad / Estudios</a></h1>
+<p>Ingeniería Electrónica de Comunicaciones<br>Máster en Formación del Profesorado (especialidad en Tecnología e Informática)</p>
+<h1 id="biografía"><a class="header" href="#biografía">Biografía</a></h1>
+<p>¡Hola! Soy Irene, docente en el ámbito de las Tecnologías de la Información y la Comunicación.<br>Mis intereses se centran en su estudio y aplicación, junto con la labor docente y la transmisión de conocimientos.</p>
+<p>Soy graduada en Ingeniería Electrónica de Comunicaciones y posteriormente realicé el Máster de Formación del Profesorado con especialidad en Tecnología e Informática.</p>
+<p>Estaré a vuestra disposición para guiaros en el desarrollo del módulo, impartiendo las clases y acompañándoos en vuestro proceso de aprendizaje.</p>
+<h1 id="contacto"><a class="header" href="#contacto">Contacto</a></h1>
+<p>irene.burngarcia@ceu.es</p>
+<h1 id="horario-de-tutoría-semanal"><a class="header" href="#horario-de-tutoría-semanal">Horario de tutoría semanal</a></h1>
+<p>Por determinar</p>
 
                     </main>
 
@@ -790,6 +799,22 @@ Navegador cliente &gt; <code>http://www.tunombre.tuapellido/info_cliente.php</co
         <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
         <script>
